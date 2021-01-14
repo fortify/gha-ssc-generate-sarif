@@ -1,0 +1,36 @@
+name: 'Generate SARIF from Fortify Software Security Center (SSC)'
+description: 'Generate SARIF file from Fortify Software Security Center (SSC) SAST results for import to GitHub'
+author: 'Fortify'
+inputs:
+  ssc_base_url:
+    description: 'SSC Base URL (e.g. https://my.ssc.host/ssc)'
+    required: true
+  ssc_auth_token:
+    description: 'SSC CI authentication token'
+    required: false
+  ssc_user_name:
+    description: 'SSC user name'
+    required: false
+  ssc_password:
+    description: 'SSC password'
+    required: false
+  ssc_version_id:
+    description: 'SSC application version id from which to download SAST vulnerabilities'
+    required: false
+  ssc_version_name:
+    description: 'SSC <application name>:<version name> from which to download SAST vulnerabilities'
+    required: false
+  ssc_vuln_filter_set_id:
+    description: 'SSC filter set id from which to download SAST vulnerabilities'
+    required: false
+  sarif_output:
+    description: 'Name and location of generated SARIF file'
+    required: false
+runs:
+  using: 'docker'
+  image: 'docker://fortifydocker/fortify-vulnerability-exporter:latest'
+env:
+  export_config: /config/SSCToGitHub.yml
+branding:
+  icon: 'shield'
+  color: 'blue'
