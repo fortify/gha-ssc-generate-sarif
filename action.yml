@@ -25,6 +25,7 @@ inputs:
     required: false
   sarif_output:
     description: 'Name and location of generated SARIF file'
+    default: ${GITHUB_WORKSPACE}/gh-fortify-sast.sarif
     required: false
 runs:
   using: 'docker'
