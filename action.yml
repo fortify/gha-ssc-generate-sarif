@@ -29,8 +29,9 @@ inputs:
 runs:
   using: 'docker'
   image: 'docker://fortifydocker/fortify-vulnerability-exporter:latest'
-env:
-  export_config: /config/SSCToGitHub.yml
+args:
+  - --export.config
+  - /config/SSCToGitHub.yml
 branding:
   icon: 'shield'
   color: 'blue'
