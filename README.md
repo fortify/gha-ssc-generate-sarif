@@ -4,6 +4,23 @@ Build secure software fast with [Fortify](https://www.microfocus.com/en-us/solut
 
 This GitHub Action invokes the Fortify Software Security Center (SSC) API to generate a SARIF log file of Static Application Security Testing (SAST) results. The SARIF output is optimized for subsequent import into GitHub to display vulnerabilities in the Security Code Scanning Alerts.
 
+## Deprecation Notice
+
+This GitHub Action is being replaced by https://github.com/marketplace/actions/export-fortify-vulnerability-data, which provides:
+
+* Support for both FoD and SSC
+* Support for additional output formats
+
+The `fortify/gha-export-vulnerabilities` action is mostly a drop-in replacement for `fortify/gha-ssc-generate-sarif`, but will require some changes in your workflows:
+
+* Obviously the `uses:` clause needs to be updated to use the new `fortify/gha-export-vulnerabilities` action
+* Input parameter `ssc_user_name` has been renamed to `ssc_user`
+* Input parameters for specifying the output file location have changed:
+    * The standard input parameter `sarif_output` has been removed
+	* Default GitHub SARIF output is written to `${GITHUB_WORKSPACE}/gh-fortify-sast.sarif`
+	* Output directory can be changed using the `export_dir` input parameter
+	* Output file name can only be changed through custom configuration, not through standard action input parameters
+
 ## Usage
 
 The primary use case for this action is after completion of a Fortify SCA or ScanCentral SAST scan. See the [Fortify ScanCentral Scan](https://github.com/marketplace/actions/fortify-scancentral-scan) action for more details on how to initiate a Fortify ScanCentral SAST scan in your workflow. The following sample workflow demonstrates steps to import results from SSC into GitHub Security Code Scanning:
