@@ -1,25 +1,12 @@
+# Deprecation Notice
+
+This GitHub Action has been deprecated and is no longer being maintained. Similar functionality is now available through the consolidated [fortify/github-action](https://github.com/marketplace/actions/fortify-ast-scan) and its sub-actions.
+
 # Generate SARIF from Fortify Software Security Center (SSC)
 
 Build secure software fast with [Fortify](https://www.microfocus.com/en-us/solutions/application-security). Fortify offers end-to-end application security solutions with the flexibility of testing on-premises and on-demand to scale and cover the entire software development lifecycle.  With Fortify, find security issues early and fix at the speed of DevOps. 
 
 This GitHub Action invokes the Fortify Software Security Center (SSC) API to generate a SARIF log file of Static Application Security Testing (SAST) results. The SARIF output is optimized for subsequent import into GitHub to display vulnerabilities in the Security Code Scanning Alerts.
-
-## Deprecation Notice
-
-This GitHub Action is being replaced by https://github.com/marketplace/actions/export-fortify-vulnerability-data to allow customers to benefit from the following enhancements:
-
-* Support for both FoD and SSC
-* Support for additional output formats
-
-The `fortify/gha-export-vulnerabilities` action is mostly a drop-in replacement for `fortify/gha-ssc-generate-sarif`, but will require some changes in your workflows:
-
-* Obviously the `uses:` clause needs to be updated to use the new `fortify/gha-export-vulnerabilities` action
-* Input parameter `ssc_user_name` has been renamed to `ssc_user`
-* Input parameters for specifying the output file location have changed:
-    * The standard input parameter `sarif_output` has been removed
-	* Default GitHub SARIF output is written to `${GITHUB_WORKSPACE}/gh-fortify-sast.sarif`
-	* Output directory can be changed using the `export_dir` input parameter
-	* Output file name can only be changed through custom configuration, not through standard action input parameters
 
 ## Usage
 
